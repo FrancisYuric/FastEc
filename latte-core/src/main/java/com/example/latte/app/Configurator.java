@@ -2,6 +2,11 @@ package com.example.latte.app;
 
 import android.support.v7.widget.ContentFrameLayout;
 
+import com.joanzapata.iconify.IconFontDescriptor;
+import com.joanzapata.iconify.Iconify;
+
+import java.sql.Array;
+import java.util.ArrayList;
 import java.util.HashMap;
 
 /**
@@ -12,8 +17,9 @@ import java.util.HashMap;
  * Descripetion: Todo
  */
 
-public final class Configurator {
+public class Configurator {
     private static final HashMap<String, Object> LATTE_CONFIGS = new HashMap<>();
+    private static final ArrayList<IconFontDescriptor> ICONS = new ArrayList<>();
 
     private Configurator() {
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
@@ -24,6 +30,7 @@ public final class Configurator {
     }
 
     public final void configure() {
+        initIcons();
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
     }
 
@@ -52,5 +59,19 @@ public final class Configurator {
     final <T> T getConfiguration(Enum<ConfigType> key) {
         checkConfiguration();
         return (T) LATTE_CONFIGS.get(key.name());
+    }
+
+    private final void initIcons() {
+        if(ICONS.size() > 0) {
+            final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
+            for(int i = 1; i < ICONS.size(); i++) {
+                initializer.with(ICONS.get(i));
+            }
+        }
+    }
+
+    public final Configurator withIcon(IconFontDescriptor iconFontDescriptor) {
+        ICONS.add(iconFontDescriptor);
+        return this;
     }
 }
