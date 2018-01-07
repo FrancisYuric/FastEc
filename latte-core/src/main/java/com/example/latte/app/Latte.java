@@ -8,5 +8,7 @@ package com.example.latte.app;
  * Descripetion: Todo
  */
 
-public class Latte {
+public final class Latte {
+
+
 }
