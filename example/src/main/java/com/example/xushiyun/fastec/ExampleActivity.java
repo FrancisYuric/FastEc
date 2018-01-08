@@ -4,15 +4,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.Toast;
 
+import com.example.latte.activities.ProxyActivity;
 import com.example.latte.app.Latte;
+import com.example.latte.delegates.LatteDelegate;
 
-public class ExampleActivity extends AppCompatActivity {
+public class ExampleActivity extends ProxyActivity {
+
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_example);
-
-//        Toast.makeText(Latte.getApplicationContext(), "已经传入Context啦!", Toast.LENGTH_SHORT).show();
+    public LatteDelegate setRootDelegate() {
+        return new ExampleDelegate();
     }
 }
