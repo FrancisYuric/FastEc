@@ -34,7 +34,7 @@ public class Configurator {
         LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
     }
 
-    public static Configurator getInstance() {
+    static Configurator getInstance() {
         return Holder.INSTANCE;
     }
 
@@ -61,7 +61,7 @@ public class Configurator {
         return (T) LATTE_CONFIGS.get(key.name());
     }
 
-    private final void initIcons() {
+    private void initIcons() {
         if(ICONS.size() > 0) {
             final Iconify.IconifyInitializer initializer = Iconify.with(ICONS.get(0));
             for(int i = 1; i < ICONS.size(); i++) {
