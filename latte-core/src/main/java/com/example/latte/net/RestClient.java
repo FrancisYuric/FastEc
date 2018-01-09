@@ -6,6 +6,7 @@ import com.example.latte.net.callback.IRequest;
 import com.example.latte.net.callback.ISuccess;
 
 import java.util.Map;
+import java.util.WeakHashMap;
 
 import okhttp3.RequestBody;
 
@@ -20,7 +21,7 @@ import okhttp3.RequestBody;
 public class RestClient {
 
     private final String URL;
-    private final Map<String, Object> PARAMS;
+    private static final WeakHashMap<String, Object> PARAMS = RestCreator.getParams();
     private final IRequest IREQUEST;
     private final ISuccess ISUCCESS;
     private final IFailure IFAILURE;
@@ -35,7 +36,7 @@ public class RestClient {
                       IError IERROR,
                       RequestBody BODY) {
         this.URL = URL;
-        this.PARAMS = PARAMS;
+        this.PARAMS.putAll(PARAMS);
         this.IREQUEST = IREQUEST;
         this.ISUCCESS = ISUCCESS;
         this.IFAILURE = IFAILURE;
