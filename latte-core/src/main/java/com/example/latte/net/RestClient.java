@@ -1,10 +1,14 @@
 package com.example.latte.net;
 
+import android.content.Context;
+
 import com.example.latte.net.callback.IError;
 import com.example.latte.net.callback.IFailure;
 import com.example.latte.net.callback.IRequest;
 import com.example.latte.net.callback.ISuccess;
 import com.example.latte.net.callback.RequestCallbacks;
+import com.example.latte.ui.LatteLoader;
+import com.example.latte.ui.LoaderStyle;
 
 import java.util.Map;
 import java.util.WeakHashMap;
@@ -31,21 +35,27 @@ public class RestClient {
     private final IFailure IFAILURE;
     private final IError IERROR;
     private final RequestBody BODY;
+    private final LoaderStyle LOADER_STYLE;
+    private final Context CONTEXT;
 
-    public RestClient(String URL,
-                      Map<String, Object> PARAMS,
-                      IRequest IREQUEST,
-                      ISuccess ISUCCESS,
-                      IFailure IFAILURE,
-                      IError IERROR,
-                      RequestBody BODY) {
-        this.URL = URL;
-        this.PARAMS.putAll(PARAMS);
-        this.IREQUEST = IREQUEST;
-        this.ISUCCESS = ISUCCESS;
-        this.IFAILURE = IFAILURE;
-        this.IERROR = IERROR;
-        this.BODY = BODY;
+    RestClient(String url,
+               Map<String, Object> params,
+               IRequest request,
+               ISuccess success,
+               IFailure failure,
+               IError error,
+               RequestBody body,
+               Context context,
+               LoaderStyle loaderStyle) {
+        this.URL = url;
+        PARAMS.putAll(params);
+        this.IREQUEST = request;
+        this.ISUCCESS = success;
+        this.IFAILURE = failure;
+        this.IERROR = error;
+        this.BODY = body;
+        this.CONTEXT = context;
+        this.LOADER_STYLE = loaderStyle;
     }
 
     public static RestClientBuilder builder() {
@@ -58,6 +68,10 @@ public class RestClient {
 
         if(IREQUEST != null) {
             IREQUEST.onRequestStart();
+        }
+
+        if(LOADER_STYLE != null) {
+            LatteLoader.showLoading(CONTEXT, LOADER_STYLE);
         }
 
         switch (method) {
@@ -88,7 +102,8 @@ public class RestClient {
                 IREQUEST,
                 ISUCCESS,
                 IFAILURE,
-                IERROR
+                IERROR,
+                LOADER_STYLE
         );
     }
 
