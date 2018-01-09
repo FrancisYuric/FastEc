@@ -24,9 +24,12 @@ import okhttp3.RequestBody;
  */
 
 public class RestClientBuilder {
-    private String mUrl ;
-    private static final Map<String, Object> PARAMS =  RestCreator.getParams();
+    private String mUrl;
+    private static final Map<String, Object> PARAMS = RestCreator.getParams();
     private IRequest mIRequest;
+    private String mDownloadDir;
+    private String mExtension;
+    private String mName;
     private ISuccess mISuccess;
     private IFailure mIFailure;
     private IError mIError;
@@ -55,7 +58,7 @@ public class RestClientBuilder {
     }
 
     public final RestClientBuilder params(String key, Object value) {
-        PARAMS.put(key,value);
+        PARAMS.put(key, value);
         return this;
     }
 
@@ -81,7 +84,7 @@ public class RestClientBuilder {
     }
 
     public final RestClient build() {
-        return new RestClient(mUrl, PARAMS, mIRequest, mISuccess, mIFailure, mIError, mBody, mFile, mContext, mLoaderStyle);
+        return new RestClient(mUrl, PARAMS, mIRequest, mDownloadDir, mExtension, mName, mISuccess, mIFailure, mIError, mBody, mFile, mContext, mLoaderStyle);
     }
 
     public final RestClientBuilder loader(Context context, LoaderStyle style) {
@@ -103,6 +106,21 @@ public class RestClientBuilder {
 
     public final RestClientBuilder file(String file) {
         this.mFile = new File(file);
+        return this;
+    }
+
+    public final RestClientBuilder downloadDir(String dir) {
+        this.mDownloadDir = dir;
+        return this;
+    }
+
+    public final RestClientBuilder extension(String extension) {
+        this.mExtension = extension;
+        return this;
+    }
+
+    public final RestClientBuilder fileName(String fileName) {
+        this.mName = fileName;
         return this;
     }
 }
