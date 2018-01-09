@@ -3,6 +3,7 @@ package com.example.xushiyun.fastec;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
+import android.widget.Toast;
 
 import com.example.latte.delegates.LatteDelegate;
 import com.example.latte.net.RestClient;
@@ -27,16 +28,16 @@ public class ExampleDelegate extends LatteDelegate {
     @Override
     public void onBindView(@Nullable Bundle savedInstanceState, View rootView) {
         //对每一个控件进行操作
+        testRestClient();
     }
 
     private void testRestClient() {
         RestClient.builder()
-                .url("")
-                .params("", "")
+                .url("http://news.baidu.com/")
                 .success(new ISuccess() {
                     @Override
                     public void onSuccess(String response) {
-
+                        Toast.makeText(getContext(), response, Toast.LENGTH_LONG).show();
                     }
                 })
                 .faliure(new IFailure() {
@@ -51,6 +52,8 @@ public class ExampleDelegate extends LatteDelegate {
 
                     }
                 })
-                .build();
+                .build()
+                .get();
+
     }
 }
