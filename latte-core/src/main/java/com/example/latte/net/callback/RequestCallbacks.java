@@ -49,14 +49,7 @@ public class RequestCallbacks implements Callback<String> {
                 IERROR.onError(response.code(), response.message());
             }
         }
-        if(LOADER_STYLE != null) {
-            HANDLER.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    LatteLoader.stopLoading();
-                }
-            }, 1000);
-        }
+        stopLoading();
     }
 
     @Override
@@ -67,6 +60,18 @@ public class RequestCallbacks implements Callback<String> {
 
         if(IREQUEST != null) {
             IREQUEST.onRequestEnd();
+        }
+        stopLoading();
+    }
+
+    private void stopLoading() {
+        if(LOADER_STYLE != null) {
+            HANDLER.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    LatteLoader.stopLoading();
+                }
+            },1000);
         }
     }
 }
