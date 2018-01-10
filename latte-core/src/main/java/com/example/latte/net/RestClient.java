@@ -8,8 +8,8 @@ import com.example.latte.net.callback.IRequest;
 import com.example.latte.net.callback.ISuccess;
 import com.example.latte.net.callback.RequestCallbacks;
 import com.example.latte.net.download.DownloadHandler;
-import com.example.latte.ui.LatteLoader;
-import com.example.latte.ui.LoaderStyle;
+import com.example.latte.ui.loader.LatteLoader;
+import com.example.latte.ui.loader.LoaderStyle;
 
 import java.io.File;
 import java.util.Map;
@@ -17,11 +17,9 @@ import java.util.WeakHashMap;
 
 import okhttp3.MediaType;
 import okhttp3.MultipartBody;
-import okhttp3.Request;
 import okhttp3.RequestBody;
 import retrofit2.Call;
 import retrofit2.Callback;
-import retrofit2.http.Body;
 
 /**
  * Created by xushiyun on 2018/1/8.
