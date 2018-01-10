@@ -7,12 +7,13 @@ import android.widget.Toast;
 import com.example.latte.activities.ProxyActivity;
 import com.example.latte.app.Latte;
 import com.example.latte.delegates.LatteDelegate;
+import com.example.latte.ec.launcher.LauncherDelegate;
 
 public class ExampleActivity extends ProxyActivity {
 
 
     @Override
     public LatteDelegate setRootDelegate() {
-        return new ExampleDelegate();
+        return new LauncherDelegate();
     }
 }
