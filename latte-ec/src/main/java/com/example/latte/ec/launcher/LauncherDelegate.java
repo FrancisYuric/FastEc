@@ -4,7 +4,11 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.View;
 
+import com.example.latte.R2;
 import com.example.latte.delegates.LatteDelegate;
+import com.example.latte.ec.R;
+
+import butterknife.BindView;
 
 /**
  * Created by xushiyun on 2018/1/10.
@@ -15,9 +19,12 @@ import com.example.latte.delegates.LatteDelegate;
  */
 
 public class LauncherDelegate extends LatteDelegate {
+
+//    @BindView(R2.id.tv_launcher_timer)
+
     @Override
     public Object setLayout() {
-        return null;
+        return R.layout.delegate_launcher;
     }
 
     @Override
