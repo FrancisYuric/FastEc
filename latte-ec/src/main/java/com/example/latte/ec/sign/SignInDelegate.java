@@ -49,6 +49,7 @@ public class SignInDelegate extends LatteDelegate {
 
     @OnClick(R2.id.icon_sign_in_wechat)
     public void onIconSignInWechatClicked() {
+        //test 20180114
     }
 
 
