@@ -22,4 +22,8 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     api project(':latte-ec')
     annotationProcessor project(':latte-compiler')
+
+    //测试时需要的数据库查看方法
+    compile 'com.facebook.stetho:stetho:1.5.0'
+    compile 'com.facebook.stetho:stetho-okhttp3:1.5.0'
 }
