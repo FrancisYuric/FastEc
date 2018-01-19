@@ -3,6 +3,7 @@ package com.example.xushiyun.fastec;
 import android.app.Application;
 
 import com.example.latte.app.Latte;
+import com.example.latte.ec.database.DatabaseManager;
 import com.example.latte.ec.icon.FontEcModule;
 import com.example.latte.net.interceptors.DebugInterceptor;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
@@ -25,5 +26,8 @@ public class ExampleApp extends Application {
                 .withApiHost("http://127.0.0.1")
                 .withInterceptor(new DebugInterceptor("index",R.raw.test))
                 .configure();
+
+        //greenDao数据初始化
+        DatabaseManager.getInstance().init(this);
     }
 }

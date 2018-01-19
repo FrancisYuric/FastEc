@@ -16,6 +16,7 @@ import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
 import com.example.latte.net.RestClient;
 import com.example.latte.net.callback.ISuccess;
+import com.example.latte.utils.log.LatteLogger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -52,17 +53,20 @@ public class SignUpDelegate extends LatteDelegate {
     void onClickSignUp() {
         if(checkForm()) {
             //向服务器提交信息
-//            RestClient.builder()
-//                    .url("sign_up")
-//                    .params("", "")
-//                    .success(new ISuccess() {
-//                        @Override
-//                        public void onSuccess(String response) {
-//
-//                        }
-//                    })
-//                    .build()
-//                    .post();
+            RestClient.builder()
+                    .url("http://39.108.1.130/RestServer/api/user_profile.php")
+                    .params("name", editSignUpName.getText().toString())
+                    .params("email", editSignUpEmail.getText().toString())
+                    .params("phone", editSignUpPhone.getText().toString())
+                    .params("password", editSignUpPassword.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE", response);
+                        }
+                    })
+                    .build()
+                    .post();
 
             Toast.makeText(getContext(), "验证通过", Toast.LENGTH_SHORT).show();
         }
