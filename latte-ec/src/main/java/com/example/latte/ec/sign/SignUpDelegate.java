@@ -63,6 +63,8 @@ public class SignUpDelegate extends LatteDelegate {
                         @Override
                         public void onSuccess(String response) {
                             LatteLogger.json("USER_PROFILE", response);
+                            //调用相应的数据库操作,用于向数据库储存数据
+                            SignHandler.onSignUp(response);
                         }
                     })
                     .build()
