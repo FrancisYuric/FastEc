@@ -8,10 +8,13 @@ package com.example.latte.app;
  * Descripetion: Todo
  */
 
-public enum ConfigType {
+public enum ConfigKeys {
     API_HOST,
     APPLICATION_CONTEXT,
     CONFIG_READY,
     ICON,
-    INTERCEPTOR
+    LOADER_DELAYED,
+    INTERCEPTOR,
+    WE_CHAT_APP_ID,
+    WE_CHAT_APP_SECRET
 }

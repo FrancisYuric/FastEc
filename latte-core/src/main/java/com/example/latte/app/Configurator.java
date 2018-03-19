@@ -1,11 +1,8 @@
 package com.example.latte.app;
 
-import android.support.v7.widget.ContentFrameLayout;
-
 import com.joanzapata.iconify.IconFontDescriptor;
 import com.joanzapata.iconify.Iconify;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -25,7 +22,7 @@ public class Configurator {
     private static final ArrayList<Interceptor> INTERCEPTORS = new ArrayList<>();
 
     private Configurator() {
-        LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), false);
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), false);
     }
 
     private static final class Holder{
@@ -34,7 +31,7 @@ public class Configurator {
 
     public final void configure() {
         initIcons();
-        LATTE_CONFIGS.put(ConfigType.CONFIG_READY.name(), true);
+        LATTE_CONFIGS.put(ConfigKeys.CONFIG_READY.name(), true);
     }
 
     static Configurator getInstance() {
@@ -46,12 +43,12 @@ public class Configurator {
     }
 
     public final Configurator withApiHost(String host) {
-        LATTE_CONFIGS.put(ConfigType.API_HOST.name(), host);
+        LATTE_CONFIGS.put(ConfigKeys.API_HOST.name(), host);
         return this;
     }
 
     private void checkConfiguration() {
-        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigType.CONFIG_READY.name());
+        final boolean isReady = (boolean) LATTE_CONFIGS.get(ConfigKeys.CONFIG_READY.name());
         if(!isReady) {
             throw new RuntimeException("Configuration is not ready, call configure");
         }
@@ -84,13 +81,13 @@ public class Configurator {
 
     public final Configurator withInterceptor(Interceptor interceptor) {
         INTERCEPTORS.add(interceptor);
-        LATTE_CONFIGS.put(ConfigType.INTERCEPTOR.name(), INTERCEPTORS);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(), INTERCEPTORS);
         return this;
     }
 
     public final Configurator withInterceptors(ArrayList<Interceptor> interceptors) {
         INTERCEPTORS.addAll(interceptors);
-        LATTE_CONFIGS.put(ConfigType.INTERCEPTOR.name(), INTERCEPTORS);
+        LATTE_CONFIGS.put(ConfigKeys.INTERCEPTOR.name(), INTERCEPTORS);
         return this;
     }
 }

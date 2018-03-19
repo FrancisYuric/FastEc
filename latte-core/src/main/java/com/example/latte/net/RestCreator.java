@@ -1,6 +1,6 @@
 package com.example.latte.net;
 
-import com.example.latte.app.ConfigType;
+import com.example.latte.app.ConfigKeys;
 import com.example.latte.app.Latte;
 
 import java.util.ArrayList;
@@ -35,7 +35,7 @@ public class RestCreator {
     }
 
     private static final class RetrofitHolder {
-        private static final String BASE_URL = (String) Latte.getConfigurations().get(ConfigType.API_HOST.name());
+        private static final String BASE_URL = (String) Latte.getConfigurations().get(ConfigKeys.API_HOST.name());
         private static final Retrofit RETROFIT_CLIENT = new Retrofit.Builder()
                 .baseUrl(BASE_URL)
                 .client(OKHttpHolder.okHttpClient)
@@ -46,7 +46,7 @@ public class RestCreator {
     private static final class OKHttpHolder {
         private static final int TIME_OUT = 60;
         private static final OkHttpClient.Builder BUILDER= new OkHttpClient.Builder();
-        private static final ArrayList<Interceptor> INTERCEPTORS = Latte.getConfiguration(ConfigType.INTERCEPTOR.name());
+        private static final ArrayList<Interceptor> INTERCEPTORS = Latte.getConfiguration(ConfigKeys.INTERCEPTOR.name());
         private static OkHttpClient.Builder addInterceptor() {
             if(INTERCEPTORS != null && !INTERCEPTORS.isEmpty()) {
                 for (Interceptor interceptor: INTERCEPTORS) {

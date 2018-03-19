@@ -15,7 +15,7 @@ import java.util.HashMap;
 public final class Latte {
 
     public static Configurator init(Context context) {
-        getConfigurations().put(ConfigType.APPLICATION_CONTEXT, context.getApplicationContext());
+        getConfigurations().put(ConfigKeys.APPLICATION_CONTEXT, context.getApplicationContext());
         return Configurator.getInstance();
     }
 
@@ -32,6 +32,6 @@ public final class Latte {
     }
 
     public static Context getApplicationContext() {
-        return Configurator.getInstance().getConfiguration(ConfigType.APPLICATION_CONTEXT);
+        return Configurator.getInstance().getConfiguration(ConfigKeys.APPLICATION_CONTEXT);
     }
 }
