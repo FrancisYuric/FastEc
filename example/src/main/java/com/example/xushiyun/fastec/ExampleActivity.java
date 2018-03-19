@@ -11,10 +11,11 @@ import com.example.latte.app.Latte;
 import com.example.latte.delegates.LatteDelegate;
 import com.example.latte.ec.launcher.LauncherDelegate;
 import com.example.latte.ec.launcher.LauncherScrollDelegate;
+import com.example.latte.ec.sign.ISignListener;
 import com.example.latte.ec.sign.SignInDelegate;
 import com.example.latte.ec.sign.SignUpDelegate;
 
-public class ExampleActivity extends ProxyActivity {
+public class ExampleActivity extends ProxyActivity implements ISignListener{
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -28,5 +29,15 @@ public class ExampleActivity extends ProxyActivity {
     @Override
     public LatteDelegate setRootDelegate() {
         return new SignInDelegate();
+    }
+
+    @Override
+    public void onSignInSuccess() {
+        Toast.makeText(this, "登录成功", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onSignUpSuccess() {
+        Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show();
     }
 }

@@ -1,5 +1,6 @@
 package com.example.latte.ec.sign;
 
+import android.app.Activity;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -11,6 +12,9 @@ import android.view.ViewGroup;
 import com.example.latte.delegates.LatteDelegate;
 import com.example.latte.ec.R;
 import com.example.latte.ec.R2;
+import com.example.latte.net.RestClient;
+import com.example.latte.net.callback.ISuccess;
+import com.example.latte.utils.log.LatteLogger;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -38,7 +42,20 @@ public class SignInDelegate extends LatteDelegate {
     public void onBtnSignInClicked() {
         //检查输入信息是否有格式上的错误
         if (checkForm()) {
-
+            RestClient.builder()
+                    .url("http://39.108.1.130/RestServer/data/user_profile.json")
+                    .params("email", mEmail.getText().toString())
+                    .params("password", mPassword.getText().toString())
+                    .success(new ISuccess() {
+                        @Override
+                        public void onSuccess(String response) {
+                            LatteLogger.json("USER_PROFILE", response);
+                            //调用相应的数据库操作,用于向数据库储存数据
+                            SignHandler.onSignIn(response, mISignListener);
+                        }
+                    })
+                    .build()
+                    .post();
         }
     }
 
@@ -52,6 +69,15 @@ public class SignInDelegate extends LatteDelegate {
         //test 20180114
     }
 
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
+    }
 
     //检查输入框的各种情况
     private boolean checkForm() {

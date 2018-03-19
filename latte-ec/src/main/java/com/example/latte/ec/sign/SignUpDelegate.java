@@ -1,5 +1,7 @@
 package com.example.latte.ec.sign;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
@@ -64,9 +66,8 @@ public class SignUpDelegate extends LatteDelegate {
                         @Override
                         public void onSuccess(String response) {
                             LatteLogger.json("USER_PROFILE", response);
-                            Log.d("USER_PROFILE", response.toString());
                             //调用相应的数据库操作,用于向数据库储存数据
-                            SignHandler.onSignUp(response);
+                            SignHandler.onSignUp(response, mISignListener);
                         }
                     })
                     .build()
@@ -130,6 +131,16 @@ public class SignUpDelegate extends LatteDelegate {
             editSignUpRePassword.setError(null);
         }
         return isPass;
+    }
+
+    private ISignListener mISignListener = null;
+
+    @Override
+    public void onAttach(Activity activity) {
+        super.onAttach(activity);
+        if(activity instanceof ISignListener) {
+            mISignListener = (ISignListener) activity;
+        }
     }
 
     @Override
