@@ -9,19 +9,21 @@ import android.widget.Toast;
 import com.example.latte.activities.ProxyActivity;
 import com.example.latte.app.Latte;
 import com.example.latte.delegates.LatteDelegate;
+import com.example.latte.ec.launcher.ILauncherListener;
 import com.example.latte.ec.launcher.LauncherDelegate;
 import com.example.latte.ec.launcher.LauncherScrollDelegate;
+import com.example.latte.ec.launcher.OnLauncherFinishTag;
 import com.example.latte.ec.sign.ISignListener;
 import com.example.latte.ec.sign.SignInDelegate;
 import com.example.latte.ec.sign.SignUpDelegate;
 
-public class ExampleActivity extends ProxyActivity implements ISignListener{
+public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         final ActionBar actionBar = getSupportActionBar();
-        if(actionBar != null) {
+        if (actionBar != null) {
             actionBar.hide();
         }
     }
@@ -39,5 +41,18 @@ public class ExampleActivity extends ProxyActivity implements ISignListener{
     @Override
     public void onSignUpSuccess() {
         Toast.makeText(this, "注册成功", Toast.LENGTH_LONG).show();
+    }
+
+    @Override
+    public void onLauncherFinish(OnLauncherFinishTag tag) {
+        switch (tag) {
+            case SIGNED:
+                break;
+            case NOT_SIGNED:
+                break;
+            default:
+                break;
+
+        }
     }
 }
