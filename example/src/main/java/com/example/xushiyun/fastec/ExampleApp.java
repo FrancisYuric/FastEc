@@ -10,6 +10,7 @@ import com.facebook.stetho.Stetho;
 import com.joanzapata.iconify.fonts.FontAwesomeModule;
 import com.orhanobut.logger.AndroidLogAdapter;
 import com.orhanobut.logger.Logger;
+import com.tencent.bugly.crashreport.CrashReport;
 
 import pl.com.salsoft.sqlitestudioremote.SQLiteStudioService;
 
@@ -42,6 +43,9 @@ public class ExampleApp extends Application {
 
         //Logger初始化
         Logger.addLogAdapter(new AndroidLogAdapter());
+
+        //bugly初始化
+        CrashReport.initCrashReport(getApplicationContext(), "47a8c65a23", true);
     }
 
     private void initStetho() {
