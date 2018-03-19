@@ -2,11 +2,19 @@ package com.example.latte.wechat;
 
 import android.app.Activity;
 
+import com.alibaba.fastjson.JSON;
+import com.alibaba.fastjson.JSONObject;
 import com.example.latte.app.ConfigKeys;
 import com.example.latte.app.Latte;
+import com.example.latte.net.RestClient;
+import com.example.latte.net.callback.ISuccess;
+import com.example.latte.utils.log.LatteLogger;
+import com.tencent.mm.opensdk.modelbase.BaseReq;
+import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
 import com.tencent.mm.opensdk.openapi.IWXAPI;
 import com.tencent.mm.opensdk.openapi.WXAPIFactory;
+
 
 /**
  * Created by xushiyun on 2018/3/20.
@@ -17,8 +25,8 @@ import com.tencent.mm.opensdk.openapi.WXAPIFactory;
  */
 
 public class LatteWeChat {
-    static final String APP_ID = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_ID);
-    static final String APP_SECRET = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_SECRET);
+    public static final String APP_ID = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_ID);
+    public static final String APP_SECRET = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_SECRET);
     private final IWXAPI WXAPI;
 
     private static final class Holder {
@@ -46,4 +54,5 @@ public class LatteWeChat {
         req.state = "random_state";
         WXAPI.sendReq(req);
     }
+
 }
