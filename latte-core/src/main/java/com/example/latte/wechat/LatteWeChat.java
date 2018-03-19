@@ -25,6 +25,11 @@ public class LatteWeChat {
         private static final LatteWeChat INSTANCE = new LatteWeChat();
     }
 
+    public static LatteWeChat getInstance() {
+        return Holder.INSTANCE;
+    }
+
+
     private LatteWeChat() {
         final Activity activity = Latte.getConfiguration(ConfigKeys.ACTIVITY);
         WXAPI = WXAPIFactory.createWXAPI(activity, APP_ID, true);
