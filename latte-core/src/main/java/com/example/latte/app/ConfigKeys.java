@@ -16,5 +16,6 @@ public enum ConfigKeys {
     LOADER_DELAYED,
     INTERCEPTOR,
     WE_CHAT_APP_ID,
-    WE_CHAT_APP_SECRET
+    WE_CHAT_APP_SECRET,
+    ACTIVITY
 }
