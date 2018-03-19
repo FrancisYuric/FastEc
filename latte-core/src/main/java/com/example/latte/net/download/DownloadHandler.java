@@ -64,6 +64,7 @@ public class DownloadHandler {
                         if(response.isSuccessful()) {
                             final SaveFileTask task = new SaveFileTask(mRequest, mSuccess);
                             final ResponseBody responseBody = response.body();
+                            //调用
                             task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, mDownloadDir, mExtension, response, mName);
 
                             //这里一定要注意判断,否则下载不全

@@ -101,6 +101,7 @@ public class RestClient {
                 break;
             case PUT_RAW:
                 call = service.putRaw(URL, BODY);
+                break;
             case PUT:
                 call = service.put(URL, PARAMS);
                 break;
@@ -166,6 +167,10 @@ public class RestClient {
 
     public final void delete() {
         request(HttpMethod.DELETE);
+    }
+
+    public final void upload() {
+        request(HttpMethod.UPLOAD);
     }
 
     public final void download() {

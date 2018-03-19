@@ -61,9 +61,9 @@ dependencies {
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     //json依赖
     compile 'com.alibaba:fastjson:1.2.44'
-
     compile 'com.orhanobut:logger:2.1.1'
-
-    compile 'org.greenrobot:greendao:3.2.2'//greenDAO
+    //greenDAO
+    compile 'org.greenrobot:greendao:3.2.2'
     compile 'org.greenrobot:greendao-generator:3.2.2'
+    api files('/Users/xushiyun/Documents/SQLiteStudioRemote.jar')
 }

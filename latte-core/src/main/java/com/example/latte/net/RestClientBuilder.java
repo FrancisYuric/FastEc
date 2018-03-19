@@ -27,9 +27,11 @@ public class RestClientBuilder {
     private String mUrl;
     private static final Map<String, Object> PARAMS = RestCreator.getParams();
     private IRequest mIRequest;
+
     private String mDownloadDir;
     private String mExtension;
     private String mName;
+
     private ISuccess mISuccess;
     private IFailure mIFailure;
     private IError mIError;

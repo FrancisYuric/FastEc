@@ -5,6 +5,7 @@ import android.support.annotation.Nullable;
 import android.support.design.widget.TextInputEditText;
 import android.support.v7.widget.AppCompatButton;
 import android.support.v7.widget.AppCompatTextView;
+import android.util.Log;
 import android.util.Patterns;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,7 +55,7 @@ public class SignUpDelegate extends LatteDelegate {
         if(checkForm()) {
             //向服务器提交信息
             RestClient.builder()
-                    .url("http://39.108.1.130/RestServer/api/user_profile.php")
+                    .url("http://39.108.1.130/RestServer/data/user_profile.json")
                     .params("name", editSignUpName.getText().toString())
                     .params("email", editSignUpEmail.getText().toString())
                     .params("phone", editSignUpPhone.getText().toString())
@@ -63,6 +64,7 @@ public class SignUpDelegate extends LatteDelegate {
                         @Override
                         public void onSuccess(String response) {
                             LatteLogger.json("USER_PROFILE", response);
+                            Log.d("USER_PROFILE", response.toString());
                             //调用相应的数据库操作,用于向数据库储存数据
                             SignHandler.onSignUp(response);
                         }
