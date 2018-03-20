@@ -1,11 +1,11 @@
 buildscript {
-    
+
     repositories {
         google()
         jcenter()
         mavenCentral()
 
-        //为了解决butterknife导入报错问题
+        //为了解决ButterKnife导入报错问题
         maven {
             url "https://oss.sonatype.org/content/repositories/snapshots"
         }
@@ -13,7 +13,7 @@ buildscript {
     dependencies {
         classpath 'com.android.tools.build:gradle:3.0.0'
         classpath 'com.jakewharton:butterknife-gradle-plugin:8.4.0'
-        //为了解决butterknife导入报错问题
+        //为了解决ButterKnife导入报错问题
         classpath 'com.jakewharton:butterknife-gradle-plugin:9.0.0-SNAPSHOT'
 
         classpath 'org.greenrobot:greendao-gradle-plugin:3.2.2'//greendao
@@ -25,9 +25,10 @@ allprojects {
         google()
         jcenter()
         maven {
-            //为了解决butterknife导入报错问题
+            //为了解决ButterKnife导入报错问题
             url "https://oss.sonatype.org/content/repositories/snapshots"
         }
+        maven { url "https://jitpack.io" }
     }
 }
 

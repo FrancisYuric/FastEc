@@ -60,7 +60,8 @@ dependencies {
     compile 'com.bigkoo:convenientbanner:2.0.5'
     compile 'com.ToxicBakery.viewpager.transforms:view-pager-transforms:1.2.32@aar'
     //json依赖
-    compile 'com.alibaba:fastjson:1.2.44'
+//    compile 'com.alibaba:fastjson:1.2.44'
+    compile 'com.alibaba:fastjson:1.1.57.android'
     compile 'com.orhanobut:logger:2.1.1'
     //greenDAO
     compile 'org.greenrobot:greendao:3.2.2'
@@ -74,4 +75,7 @@ dependencies {
     //微信接入(包含统计),gradle自动接入最新的版本
     //noinspection GradleDynamicVersion
     compile 'com.tencent.mm.opensdk:wechat-sdk-android-with-mta:+'
+
+    //RecyclerView依赖
+    compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.30'
 }
