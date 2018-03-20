@@ -40,6 +40,7 @@ public class MultipleRecyclerAdapter extends
 
     protected MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
         super(data);
+        init();
     }
 
     public static MultipleRecyclerAdapter create(List<MultipleItemEntity> data) {
