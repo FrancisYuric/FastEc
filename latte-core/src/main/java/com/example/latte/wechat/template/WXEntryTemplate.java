@@ -3,6 +3,7 @@ package com.example.latte.wechat.template;
 import com.example.latte.activities.ProxyActivity;
 import com.example.latte.delegates.LatteDelegate;
 import com.example.latte.wechat.BaseWXEntryActivity;
+import com.example.latte.wechat.LatteWeChat;
 
 /**
  * Created by xushiyun on 2018/3/19.
@@ -23,6 +24,6 @@ public class WXEntryTemplate extends BaseWXEntryActivity {
 
     @Override
     protected void onSignInSuccess(String userInfo) {
-
+        LatteWeChat.getInstance().getSignInCallback().onSignInSuccess(userInfo);
     }
 }

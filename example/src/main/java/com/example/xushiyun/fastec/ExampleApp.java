@@ -31,7 +31,8 @@ public class ExampleApp extends Application {
                 .withIcon(new FontEcModule())
                 .withApiHost("http://127.0.0.1")
                 .withInterceptor(new DebugInterceptor("user_profile", R.raw.user_profile))
-
+                .withWeChatAppId("")
+                .withWeChatAppSecret("")
                 .configure();
 
 

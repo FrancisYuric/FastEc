@@ -9,6 +9,7 @@ import com.example.latte.app.Latte;
 import com.example.latte.net.RestClient;
 import com.example.latte.net.callback.ISuccess;
 import com.example.latte.utils.log.LatteLogger;
+import com.example.latte.wechat.callbacks.IWeChatSignInCallback;
 import com.tencent.mm.opensdk.modelbase.BaseReq;
 import com.tencent.mm.opensdk.modelbase.BaseResp;
 import com.tencent.mm.opensdk.modelmsg.SendAuth;
@@ -28,6 +29,7 @@ public class LatteWeChat {
     public static final String APP_ID = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_ID);
     public static final String APP_SECRET = Latte.getConfiguration(ConfigKeys.WE_CHAT_APP_SECRET);
     private final IWXAPI WXAPI;
+    private IWeChatSignInCallback mSignInCallback = null;
 
     private static final class Holder {
         private static final LatteWeChat INSTANCE = new LatteWeChat();
@@ -46,6 +48,14 @@ public class LatteWeChat {
 
     public final IWXAPI getWXAPI() {
         return WXAPI;
+    }
+
+    public LatteWeChat onSignInSuccess(IWeChatSignInCallback callback) {
+        this.mSignInCallback = callback;
+        return this;
+    }
+    public IWeChatSignInCallback getSignInCallback() {
+        return mSignInCallback;
     }
 
     public final void signIn() {
