@@ -1,5 +1,9 @@
 package com.example.latte.ui.banner;
 
+import android.media.Image;
+
+import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
+
 /**
  * Created by xushiyun on 2018/3/20.
  * Project Name: FastEc
@@ -8,5 +12,9 @@ package com.example.latte.ui.banner;
  * Description: Todo
  */
 
-public class HolderCreator {
+public class HolderCreator implements CBViewHolderCreator<ImageHolder> {
+    @Override
+    public ImageHolder createHolder() {
+        return new ImageHolder();
+    }
 }
