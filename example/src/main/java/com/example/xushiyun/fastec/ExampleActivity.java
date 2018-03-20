@@ -19,6 +19,8 @@ import com.example.latte.ec.sign.ISignListener;
 import com.example.latte.ec.sign.SignInDelegate;
 import com.example.latte.ec.sign.SignUpDelegate;
 
+import qiu.niorgai.StatusBarCompat;
+
 public class ExampleActivity extends ProxyActivity implements ISignListener, ILauncherListener {
 
     @Override
@@ -29,6 +31,7 @@ public class ExampleActivity extends ProxyActivity implements ISignListener, ILa
             actionBar.hide();
         }
         Latte.getConfigurator().withActivity(this);
+        StatusBarCompat.translucentStatusBar(this, true);
     }
 
     @Override

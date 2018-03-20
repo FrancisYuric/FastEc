@@ -90,4 +90,10 @@ dependencies {
     compile ('com.github.niorgai:StatusBarCompat:2.1.4', {
         exclude group: 'com.android.support'
     })
+
+    //google AutoValue
+    //provided仅是在编译期间使用这个
+    provided 'com.google.auto.value:auto-value:1.4.1'
+    annotationProcessor "com.google.auto.value:auto-value:1.4.1"
+
 }
