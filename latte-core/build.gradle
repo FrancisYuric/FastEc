@@ -85,4 +85,9 @@ dependencies {
 
     //RecyclerView divider依赖
     compile 'com.choices.divider:RecyclerView_Divider:1.0.0'
+
+    //沉浸式状态栏
+    compile ('com.github.niorgai:StatusBarCompat:2.1.4', {
+        exclude group: 'com.android.support'
+    })
 }
