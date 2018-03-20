@@ -1,7 +1,5 @@
 package com.example.latte.ui.banner;
 
-import android.media.Image;
-
 import com.bigkoo.convenientbanner.holder.CBViewHolderCreator;
 
 /**

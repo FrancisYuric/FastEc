@@ -1,7 +1,7 @@
 package com.example.latte.ui.image;
 
-import com.bumptech.glide.annotation.GlideModule;
-import com.bumptech.glide.module.AppGlideModule;
+//import com.bumptech.glide.annotation.GlideModule;
+//import com.bumptech.glide.module.AppGlideModule;
 
 /**
  * Created by xushiyun on 2018/3/20.
@@ -11,7 +11,7 @@ import com.bumptech.glide.module.AppGlideModule;
  * Description: Todo
  */
 
-@GlideModule
-public class LatteGlideModel extends AppGlideModule {
+//@GlideModule
+public class LatteGlideModel{
 
 }
