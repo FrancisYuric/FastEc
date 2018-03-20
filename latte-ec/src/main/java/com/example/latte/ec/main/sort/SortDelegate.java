@@ -1,4 +1,4 @@
-package com.example.latte.ec.main.index;
+package com.example.latte.ec.main.sort;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,15 +10,15 @@ import com.example.latte.ec.R;
 /**
  * Created by xushiyun on 2018/3/20.
  * Project Name: FastEc
- * Package Name: com.example.latte.ec.main.index
- * File Name:    IndexDelegate
+ * Package Name: com.example.latte.ec.main.sort
+ * File Name:    SortDelegate
  * Description: Todo
  */
 
-public class IndexDelegate extends BottomItemDelegate {
+public class SortDelegate extends BottomItemDelegate {
     @Override
     public Object setLayout() {
-        return R.layout.delegate_index;
+        return R.layout.delegate_sort;
     }
 
     @Override

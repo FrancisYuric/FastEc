@@ -11,7 +11,7 @@ import java.util.LinkedHashMap;
  */
 
 public final class ItemBuilder {
-    //需要使用linkedhashmap保证item的有序性
+    //需要使用LinkedHashmap保证item的有序性
     private final LinkedHashMap<BottomTabBean, BottomItemDelegate> ITEMS = new LinkedHashMap<>();
 
     static ItemBuilder builder() {
