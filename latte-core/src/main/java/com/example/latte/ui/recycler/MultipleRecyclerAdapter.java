@@ -6,11 +6,13 @@ import android.view.View;
 import android.widget.ImageView;
 
 import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bigkoo.convenientbanner.listener.OnItemClickListener;
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.latte.R;
+import com.example.latte.ui.banner.BannerCreator;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -25,7 +27,8 @@ import java.util.List;
 
 public class MultipleRecyclerAdapter extends
         BaseMultiItemQuickAdapter<MultipleItemEntity, MultipleViewHolder>
-        implements BaseQuickAdapter.SpanSizeLookup {
+        implements BaseQuickAdapter.SpanSizeLookup,
+        OnItemClickListener {
     /**
      * Same as QuickAdapter#QuickAdapter(Context,int) but with
      * some initialization data.
@@ -90,7 +93,7 @@ public class MultipleRecyclerAdapter extends
                         .into((ImageView) holder.getView(R.id.img_single));
                 break;
             case ItemType.TEXT_IMAGE:
-                text= entity.getField(MultipleFields.TEXT);
+                text = entity.getField(MultipleFields.TEXT);
                 imageUrl = entity.getField(MultipleFields.IMAGE_URL);
                 Glide.with(mContext)
                         .load(imageUrl)
@@ -98,12 +101,14 @@ public class MultipleRecyclerAdapter extends
                         .dontAnimate()
                         .centerCrop()
                         .into((ImageView) holder.getView(R.id.img_multiple));
-                holder.setText(R.id.tv_multiple,text);
+                holder.setText(R.id.tv_multiple, text);
                 break;
             case ItemType.BANNER:
-                if(!mIsInitBanner) {
+                if (!mIsInitBanner) {
                     bannerImages = entity.getField(MultipleFields.BANNERS);
                     final ConvenientBanner<String> convenientBanner = holder.getView(R.id.banner_recycler_item);
+                    BannerCreator.setDefault(convenientBanner, bannerImages, this);
+                    mIsInitBanner = true;
                 }
                 break;
             default:
@@ -114,5 +119,10 @@ public class MultipleRecyclerAdapter extends
     @Override
     public int getSpanSize(GridLayoutManager gridLayoutManager, int position) {
         return getData().get(position).getField(MultipleFields.SPAN_SIZE);
+    }
+
+    @Override
+    public void onItemClick(int position) {
+
     }
 }
