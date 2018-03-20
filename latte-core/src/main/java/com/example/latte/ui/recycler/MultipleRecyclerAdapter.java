@@ -3,7 +3,11 @@ package com.example.latte.ui.recycler;
 import android.content.ClipData;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.View;
+import android.widget.ImageView;
 
+import com.bigkoo.convenientbanner.ConvenientBanner;
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.load.engine.DiskCacheStrategy;
 import com.chad.library.adapter.base.BaseMultiItemQuickAdapter;
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.example.latte.R;
@@ -28,6 +32,9 @@ public class MultipleRecyclerAdapter extends
      *
      * @param data A new list is created out of this one to avoid mutable list
      */
+    //确保初始化一次Banner,方式item重复加载
+    private boolean mIsInitBanner = false;
+
     protected MultipleRecyclerAdapter(List<MultipleItemEntity> data) {
         super(data);
     }
@@ -74,10 +81,30 @@ public class MultipleRecyclerAdapter extends
                 break;
             case ItemType.IMAGE:
                 imageUrl = entity.getField(MultipleFields.IMAGE_URL);
+                Glide.with(mContext)
+                        .load(imageUrl)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .dontAnimate()
+                        .centerCrop()
+                        .dontAnimate()
+                        .into((ImageView) holder.getView(R.id.img_single));
                 break;
             case ItemType.TEXT_IMAGE:
+                text= entity.getField(MultipleFields.TEXT);
+                imageUrl = entity.getField(MultipleFields.IMAGE_URL);
+                Glide.with(mContext)
+                        .load(imageUrl)
+                        .diskCacheStrategy(DiskCacheStrategy.ALL)
+                        .dontAnimate()
+                        .centerCrop()
+                        .into((ImageView) holder.getView(R.id.img_multiple));
+                holder.setText(R.id.tv_multiple,text);
                 break;
             case ItemType.BANNER:
+                if(!mIsInitBanner) {
+                    bannerImages = entity.getField(MultipleFields.BANNERS);
+                    final ConvenientBanner<String> convenientBanner = holder.getView(R.id.banner_recycler_item);
+                }
                 break;
             default:
                 break;
